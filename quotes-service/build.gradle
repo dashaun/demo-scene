@@ -91,9 +91,10 @@ springBoot {
 
 bootBuildImage {
   builder = 'dashaun/builder:tiny'
-  environment = ['BP_NATIVE_IMAGE': 'true']
-  imageName = "gamussa/native-quote-service:0.0.5-SNAPSHOT"
-  verboseLogging = true
+  environment = ['BP_NATIVE_IMAGE': 'true',
+                 'BP_NATIVE_IMAGE_BUILD_ARGUMENTS': '-H:-CheckToolchain']
+  imageName = "dashaun/native-quote-service:vacation"
+  verboseLogging = false
 }
   
   

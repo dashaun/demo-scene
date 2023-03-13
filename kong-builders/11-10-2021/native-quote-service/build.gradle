@@ -32,7 +32,7 @@ test {
 bootBuildImage {
   builder = 'dashaun/builder:tiny'
   environment = ['BP_NATIVE_IMAGE'                : 'true',
-                 'BP_NATIVE_IMAGE_BUILD_ARGUMENTS': '-H:Log=registerResource:3 -Dspring.spel.ignore=true -Dspring.native.remove-yaml-support=true']
+                 'BP_NATIVE_IMAGE_BUILD_ARGUMENTS': '-H:-CheckToolchain -H:Log=registerResource:3 -Dspring.spel.ignore=true -Dspring.native.remove-yaml-support=true']
   imageName = "gamussa/native-quote-service:0.0.5-SNAPSHOT"
   verboseLogging = true
 }
