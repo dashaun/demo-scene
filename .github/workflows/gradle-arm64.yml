@@ -1,6 +1,7 @@
 name: Build Java Apps for ARM64 images
 
 on:
+  workflow_dispatch:
   push:
     branches: [ main ]
   pull_request:
@@ -27,11 +28,11 @@ jobs:
       - name: ☕️ Build with Gradle
         run: ./gradlew build
 
-      - name: 🐳 Login to DockerHub
-        uses: docker/login-action@v2
-        with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
+#      - name: 🐳 Login to DockerHub
+#        uses: docker/login-action@v2
+#        with:
+#          username: ${{ secrets.DOCKERHUB_USERNAME }}
+#          password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: 🐳 Set up QEMU
         uses: docker/setup-qemu-action@v2
@@ -41,8 +42,8 @@ jobs:
       - name: 🐳 Build Docker Image ARM64
         run: ./gradlew bootBuildImage --imageName gamussa/native-quote-service:latest-arm64 --builder dashaun/builder-arm:tiny
 
-      - name: ⬆️ 🐳 Push to Docker Hub
-        run: docker push gamussa/native-quote-service:latest-arm64
+#      - name: ⬆️ 🐳 Push to Docker Hub
+#        run: docker push gamussa/native-quote-service:latest-arm64
   
   quotes-service:
     defaults:
@@ -64,11 +65,11 @@ jobs:
       - name: ☕️ Build with Gradle
         run: ./gradlew build
 
-      - name: 🐳 Login to DockerHub
-        uses: docker/login-action@v2
-        with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
+#      - name: 🐳 Login to DockerHub
+#        uses: docker/login-action@v2
+#        with:
+#          username: ${{ secrets.DOCKERHUB_USERNAME }}
+#          password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: 🐳 Set up QEMU
         uses: docker/setup-qemu-action@v2
@@ -78,6 +79,6 @@ jobs:
       - name: 🐳 Build Docker Image ARM64
         run: ./gradlew bootBuildImage --imageName gamussa/reactive-quote-service:latest-arm64 --builder dashaun/builder-arm:tiny
 
-      - name: ⬆️ 🐳 Push to Docker Hub
-        run: docker push gamussa/reactive-quote-service:latest-arm64
+#      - name: ⬆️ 🐳 Push to Docker Hub
+#        run: docker push gamussa/reactive-quote-service:latest-arm64
   
