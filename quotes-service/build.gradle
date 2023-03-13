@@ -92,7 +92,7 @@ springBoot {
 bootBuildImage {
   builder = 'dashaun/builder-arm:tiny'
   environment = ['BP_NATIVE_IMAGE': 'true',
-                 'BP_NATIVE_IMAGE_BUILD_ARGUMENTS': '-H:-CheckToolchain']
+                 'BP_NATIVE_IMAGE_BUILD_ARGUMENTS': '--static --libc=musl -H:-CheckToolchain -H:+ReportExceptionStackTraces']
   imageName = "dashaun/native-quote-service:vacation"
   verboseLogging = false
 }
